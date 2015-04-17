@@ -1,7 +1,7 @@
 Asynchronous IndexedDB plugin for Cordova
 ================================
 
-[![Dependencies](https://img.shields.io/david/dev/ABB-Austin/cordova-plugin-indexeddb-async.svg)](https://david-dm.org/axemclion/indexeddbshim)
+[![Dependencies](https://img.shields.io/david/ABB-Austin/cordova-plugin-indexeddb-async.svg)](https://david-dm.org/axemclion/indexeddbshim)
 [![npm](http://img.shields.io/npm/v/cordova-plugin-indexeddb-async.svg)](https://www.npmjs.com/package/indexeddbshim)
 [![License](https://img.shields.io/npm/l/cordova-plugin-indexeddb-async.svg)](LICENSE-APACHE)
 
