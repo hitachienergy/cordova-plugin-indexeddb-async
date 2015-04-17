@@ -1,0 +1,36 @@
+{
+  "name": "cordova-plugin-indexeddb-async",
+  "version": "0.0.1",
+  "description": "An asynchronous IndexedDB plug-in for Cordova apps",
+  "cordova": {
+    "id": "cordova-plugin-indexeddb-async",
+    "platforms": [
+      "android",
+      "ios",
+      "windows",
+      "browser"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ABB-Austin/cordova-plugin-indexeddb-async.git"
+  },
+  "keywords": [
+    "cordova",
+    "indexeddb",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-windows8",
+    "cordova-windows",
+    "cordova-browser"
+  ],
+  "author": {
+    "name": "ABB Austin",
+    "url": "http://abb.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "indexeddbshim": "^1.0.6"
+  }
+}
