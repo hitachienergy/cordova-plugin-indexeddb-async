@@ -10,6 +10,12 @@
     <repo>https://github.com/ABB-Austin/cordova-plugin-indexeddb-async</repo>
     <issues>https://github.com/ABB-Austin/cordova-plugin-indexeddb-async/issues</issues>
 
+    <platform name="browser">
+        <js-module src="node_modules/indexeddbshim/dist/indexeddbshim.min.js" name="IndexedDBShim">
+            <runs />
+        </js-module>
+    </platform>
+
     <platform name="ios">
         <js-module src="node_modules/indexeddbshim/dist/indexeddbshim.min.js" name="IndexedDBShim">
             <runs />
