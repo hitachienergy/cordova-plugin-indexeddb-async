@@ -11,6 +11,9 @@
       "browser"
     ]
   },
+  "scripts": {
+    "prepublish": "npm update && cp node_modules/indexeddbshim/dist/indexeddbshim.min.js www/indexeddbshim.min.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ABB-Austin/cordova-plugin-indexeddb-async.git"
