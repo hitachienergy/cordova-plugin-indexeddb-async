@@ -1,1 +1,1 @@
-window.openDatabase = window.openDatabase || require('com.thinkwisesoftware.websql').openDatabase;
+window.openDatabase = window.openDatabase || require('cordova-plugin-websql-async.WebSQL').openDatabase;
