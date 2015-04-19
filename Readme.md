@@ -15,6 +15,14 @@ Installation
 --------------------------
 Install via the [Cordova CLI](https://cordova.apache.org/docs/en/edge/guide_cli_index.md.html).
 
+For __Cordova CLI 4.x__, use the GIT URL syntax:
+
+````bash
+cordova plugin add https://github.com/ABB-Austin/cordova-plugin-indexeddb-async.git
+````
+
+For __Cordova CLI 5.x__, use the [new npm syntax](https://github.com/cordova/apache-blog-posts/blob/master/2015-04-15-plugins-release-and-move-to-npm.md):
+
 ````bash
 cordova plugin add cordova-plugin-indexeddb-async
 ````
