@@ -1,9 +1,9 @@
 Asynchronous IndexedDB plugin for Cordova
 ================================
 
-[![Dependencies](https://img.shields.io/david/ABB-Austin/cordova-plugin-indexeddb-async.svg)](https://david-dm.org/axemclion/indexeddbshim)
-[![npm](http://img.shields.io/npm/v/cordova-plugin-indexeddb-async.svg)](https://www.npmjs.com/package/indexeddbshim)
-[![License](https://img.shields.io/npm/l/cordova-plugin-indexeddb-async.svg)](LICENSE-APACHE)
+[![Dependencies](https://img.shields.io/david/ABB-Austin/cordova-plugin-indexeddb-async.svg)](https://david-dm.org/ABB-Austin/cordova-plugin-indexeddb-async)
+[![npm](http://img.shields.io/npm/v/cordova-plugin-indexeddb-async.svg)](https://www.npmjs.com/package/cordova-plugin-indexeddb-async)
+[![License](https://img.shields.io/npm/l/cordova-plugin-indexeddb-async.svg)](LICENSE)
 
 * Uses [IndexedDBShim](https://github.com/axemclion/IndexedDBShim) to polyfill devices that don't support IndexedDB
 * Uses the [__asynchronous__ WebSql plugin](https://github.com/Thinkwise/cordova-plugin-websql) on Windows devices
