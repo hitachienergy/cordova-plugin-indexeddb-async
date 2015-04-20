@@ -12,7 +12,7 @@
     ]
   },
   "scripts": {
-    "prepublish": "npm update && cp node_modules/indexeddbshim/dist/indexeddbshim.min.js www/indexeddbshim.min.js"
+    "update": "npm update --save && cp node_modules/indexeddbshim/dist/indexeddbshim.min.js www/indexeddbshim.min.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +34,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "indexeddbshim": "^1.0.6"
+    "indexeddbshim": "^1.0.7"
   }
 }
