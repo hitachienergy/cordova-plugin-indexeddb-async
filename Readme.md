@@ -11,6 +11,11 @@ Asynchronous IndexedDB plugin for Cordova
 * This plugin is basically an IndexedDB-to-WebSql adapter
 
 
+Supported Platforms
+--------------------------
+This plugin supports `ios`, `android`, `windows` (phone and desktop), and the `browser` platform.   On most platforms, it simply loads the [IndexedDBShim](https://github.com/axemclion/IndexedDBShim) polyfill.  On Windows Phone 8.1, it loads the [asynchronous WebSql plugin](https://github.com/Thinkwise/cordova-plugin-websql) first, _then_ IndexedDBShim.
+
+
 Installation
 --------------------------
 Install via the [Cordova CLI](https://cordova.apache.org/docs/en/edge/guide_cli_index.md.html).
