@@ -5,7 +5,7 @@
     <name>cordova-plugin-indexeddb-async</name>
     <description>An asynchronous IndexedDB plug-in for Cordova apps</description>
     <author>ABB Austin</author>
-    <license>MIT</license>
+    <license>Apache-2.0</license>
     <keywords>cordova, indexeddb, db, database</keywords>
     <repo>https://github.com/ABB-Austin/cordova-plugin-indexeddb-async</repo>
     <issues>https://github.com/ABB-Austin/cordova-plugin-indexeddb-async/issues</issues>

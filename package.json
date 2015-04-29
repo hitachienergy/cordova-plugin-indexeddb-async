@@ -32,7 +32,7 @@
     "name": "ABB Austin",
     "url": "http://abb.com"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "dependencies": {
     "indexeddbshim": "^1.0.11"
   }
