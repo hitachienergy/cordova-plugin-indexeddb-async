@@ -42,30 +42,14 @@ Cordova will automatically load the plugin and run it.  So all you need to do is
 
 Supported Platforms
 --------------------------
-This plugin supports `ios`, `android`, `windows` (phone and desktop), and the `browser` platform.
+This plugin supports `ios`, `android`, and `windows` (phone and desktop), as well as the new `browser` platform.
 
 ### Android
 Android 4.3 and earlier do not support IndexedDB, so this plugin will automatically add IndexedDB support.  On Android 4.4 and later, the plugin does nothing, since IndexedDB is already natively supported.
 
 
-### Windows
-Windows 8 and 8.1 support IndexedDB natively, so the plugin won't do anything by default.  
-
-Windows 8.x's implementation of IndexedDB is [mising some features](http://codepen.io/cemerick/pen/Itymi), such as compound keys and compound indexes. If you need those features in your app, then you may want to use this plugin rather than the native implementation.  To do that, add the following line of cose to your app:
-
-````javascript
-window.shimIndexedDB.__useShim()
-````
-
-
-### Windows Phone
-Windows Phone does not support IndexedDB or WebSQL, so this plugin will automatically load the [asynchronous WebSQL plugin](https://github.com/Thinkwise/cordova-plugin-websql) to add WebSQL support, and then use [IndexedDBShim](https://github.com/axemclion/IndexedDBShim) to expose WebSQL to your app via the IndexedDB API.  It's complicated, but it works.  :)
-
-The WebSQL plugin is specifically written for Windows Phone, so it only supports the two processor architectures that Windows Phone supports (`x86` and `arm`).  This means that you need to specify an extra flag when building your Windows Phone app via Cordova:
-
-````bash
-cordova build windows --archs="x86 arm" -- --phone
-````
+### Browser
+All modern browsers [natively support IndexedDB](http://caniuse.com/#search=indexeddb), so the plugin won't do anything.  But for older browsers that [support WebSQL](http://caniuse.com/#search=websql), this plugin will automatically add IndexedDB support.
 
 
 ### iOS
@@ -88,4 +72,24 @@ Due to a [bug in WebKit](https://bugs.webkit.org/show_bug.cgi?id=137034), the `w
     // This code will use the native IndexedDB if it exists, or the shim otherwise
     indexedDB.open("MyDatabase", 1);
 })();
+````
+
+
+### Windows
+Windows 8 and 8.1 support IndexedDB natively, so the plugin won't do anything by default.  
+
+Windows 8.x's implementation of IndexedDB is [mising some features](http://codepen.io/cemerick/pen/Itymi), such as compound keys and compound indexes. If you need those features in your app, then you may want to use this plugin rather than the native implementation.  To do that, add the following line of cose to your app:
+
+````javascript
+window.shimIndexedDB.__useShim()
+````
+
+
+### Windows Phone
+Windows Phone does not support IndexedDB or WebSQL, so this plugin will automatically load the [asynchronous WebSQL plugin](https://github.com/Thinkwise/cordova-plugin-websql) to add WebSQL support, and then use [IndexedDBShim](https://github.com/axemclion/IndexedDBShim) to expose WebSQL to your app via the IndexedDB API.  It's complicated, but it works.  :)
+
+The WebSQL plugin is specifically written for Windows Phone, so it only supports the two processor architectures that Windows Phone supports (`x86` and `arm`).  This means that you need to specify an extra flag when building your Windows Phone app via Cordova:
+
+````bash
+cordova build windows --archs="x86 arm" -- --phone
 ````
