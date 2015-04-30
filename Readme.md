@@ -5,16 +5,14 @@ Asynchronous IndexedDB plugin for Cordova
 [![npm](http://img.shields.io/npm/v/cordova-plugin-indexeddb-async.svg)](https://www.npmjs.com/package/cordova-plugin-indexeddb-async)
 [![License](https://img.shields.io/npm/l/cordova-plugin-indexeddb-async.svg)](LICENSE)
 
+
+Features
+--------------------------
 * Uses [IndexedDBShim](https://github.com/axemclion/IndexedDBShim) to polyfill devices that don't support IndexedDB
 * Uses the [__asynchronous__ WebSql plugin](https://github.com/Thinkwise/cordova-plugin-websql) on Windows devices
 * Can _optionally replace_ native IndexedDB on devices with [buggy implementations](http://www.raymondcamden.com/2014/9/25/IndexedDB-on-iOS-8--Broken-Bad)
 * Can _optionally enhance_ native IndexedDB on devices that are [missing certain features](http://codepen.io/cemerick/pen/Itymi)
 * This plugin is basically an IndexedDB-to-WebSql adapter
-
-
-Supported Platforms
---------------------------
-This plugin supports `ios`, `android`, `windows` (phone and desktop), and the `browser` platform.   On most platforms, it simply loads the [IndexedDBShim](https://github.com/axemclion/IndexedDBShim) polyfill.  On Windows Phone 8.1, it loads the [asynchronous WebSql plugin](https://github.com/Thinkwise/cordova-plugin-websql) first, _then_ IndexedDBShim.
 
 
 Installation
@@ -38,79 +36,56 @@ Using the Plugin
 --------------------------
 Cordova will automatically load the plugin and run it.  So all you need to do is use IndexedDB just like normal.
 
-````javascript
-// Open (or create) the database
-var open = indexedDB.open("MyDatabase", 1);
-
-// Create the schema
-open.onupgradeneeded = function() {
-    var db = open.result;
-    var store = db.createObjectStore("MyObjectStore", {keyPath: "id"});
-    var index = store.createIndex("NameIndex", ["name.last", "name.first"]);
-};
-
-open.onsuccess = function() {
-    // Start a new transaction
-    var db = open.result;
-    var tx = db.transaction("MyObjectStore", "readwrite");
-    var store = tx.objectStore("MyObjectStore");
-    var index = store.index("NameIndex");
-
-    // Add some data
-    store.put({id: 12345, name: {first: "John", last: "Doe"}, age: 42});
-    store.put({id: 67890, name: {first: "Bob", last: "Smith"}, age: 35});
-    
-    // Query the data
-    var getJohn = store.get(12345);
-    var getBob = index.get(["Smith", "Bob"]);
-
-    getJohn.onsuccess = function() {
-        console.log(getJohn.result.name.first);  // => "John"
-    };
-
-    getBob.onsuccess = function() {
-        console.log(getBob.result.name.first);   // => "Bob"
-    };
-
-    // Close the db when the transaction is done
-    tx.oncomplete = function() {
-        db.close();
-    };
-}
-````
+[Here's an example](https://gist.github.com/BigstickCarpet/a0d6389a5d0e3a24814b)
 
 
-Fixing Problems in Native IndexedDB
+
+Supported Platforms
 --------------------------
-Even if a browser natively supports IndexedDB, you may still want to use this shim.  Some native IndexedDB implemenatations are [very buggy](http://www.raymondcamden.com/2014/9/25/IndexedDB-on-iOS-8--Broken-Bad).  Others are [missing certain features](http://codepen.io/cemerick/pen/Itymi).  There are also many minor inconsistencies between different browser implementations of IndexedDB, such as how errors are handled, how transaction timing works, how records are sorted, how cursors behave, etc.  Using this shim will ensure consistent behavior across all browsers.
+This plugin supports `ios`, `android`, `windows` (phone and desktop), and the `browser` platform.
 
-To force IndexedDBShim to shim the browser's native IndexedDB, add this line to your script:
+### Android
+Android 4.3 and earlier do not support IndexedDB, so this plugin will automatically add IndexedDB support.  On Android 4.4 and later, the plugin does nothing, since IndexedDB is already natively supported.
+
+
+### Windows
+Windows 8 and 8.1 support IndexedDB natively, so the plugin won't do anything by default.  
+
+Windows 8.x's implementation of IndexedDB is [mising some features](http://codepen.io/cemerick/pen/Itymi), such as compound keys and compound indexes. If you need those features in your app, then you may want to use this plugin rather than the native implementation.  To do that, add the following line of cose to your app:
 
 ````javascript
 window.shimIndexedDB.__useShim()
 ````
 
-On browsers that support WebSQL, this line will _completely replace_ the native IndexedDB implementation with the IndexedDBShim-to-WebSQL implementation.
 
-On browsers that _don't_ support WebSQL, but _do_ support IndexedDB, this line will patch many known problems and add missing features.  For example, on Internet Explorer, this will add support for compound keys.
+### Windows Phone
+Windows Phone does not support IndexedDB or WebSQL, so this plugin will automatically load the [asynchronous WebSQL plugin](https://github.com/Thinkwise/cordova-plugin-websql) to add WebSQL support, and then use [IndexedDBShim](https://github.com/axemclion/IndexedDBShim) to expose WebSQL to your app via the IndexedDB API.  It's complicated, but it works.  :)
+
+The WebSQL plugin is specifically written for Windows Phone, so it only supports the two processor architectures that Windows Phone supports (`x86` and `arm`).  This means that you need to specify an extra flag when building your Windows Phone app via Cordova:
+
+````bash
+cordova build windows --archs="x86 arm" -- --phone
+````
 
 
-Known Issues
---------------------------
-#### iOS
-Due to a [bug in WebKit](https://bugs.webkit.org/show_bug.cgi?id=137034), the `window.indexedDB` property is read-only and cannot be overridden by IndexedDBShim.  There are two possible workarounds for this:
+### iOS
+iOS 7 and earlier do not support IndexedDB, so this plugin will automatically add IndexedDB support.  On iOS 8 and later, the plugin does nothing, since IndexedDB is already natively supported.
 
-1. Use `window.shimIndexedDB` instead of `window.indexedDB` 
-2. Create an `indexedDB` variable in your closure<br>
-By creating a variable named `indexedDB`, all the code within that closure will use the variable instead of the `window.indexedDB` property.  For example:
+iOS 8's implementation of IndexedDB is [very buggy](http://www.raymondcamden.com/2014/9/25/IndexedDB-on-iOS-8--Broken-Bad).  So, you may want to use this plugin rather than the native implementation.  To do that, add the following line of code to your app:
+
+````javascript
+window.shimIndexedDB.__useShim()
+````
+
+##### Known Issue on iOS
+Due to a [bug in WebKit](https://bugs.webkit.org/show_bug.cgi?id=137034), the `window.indexedDB` property is read-only and cannot be overridden by IndexedDBShim.  Until the bug is fixed, the only workaround is to create an `indexedDB` variable in your closure.  That way, all code within that closure will use the variable instead of the `window.indexedDB` property.  For example:
 
 ````javascript
 (function() {
-    // This works on all browsers, and only uses IndexedDBShim as a final fallback 
+    // This works on all devices/browsers, and only uses IndexedDBShim as a final fallback 
     var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
 
-    // This code will use the native IndexedDB, if it exists, or the shim otherwise
+    // This code will use the native IndexedDB if it exists, or the shim otherwise
     indexedDB.open("MyDatabase", 1);
 })();
 ````
-
