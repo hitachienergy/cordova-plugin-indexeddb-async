@@ -12,8 +12,8 @@
     ]
   },
   "scripts": {
-    "update-deps": "npm-check-updates -u && npm update && cp node_modules/indexeddbshim/dist/indexeddbshim.min.js www/indexeddbshim.min.js",
-    "release": "npm run update-deps && bump --prompt --tag --push --all && npm publish"
+    "upgrade": "npm-check-updates -u && npm update && cp node_modules/indexeddbshim/dist/indexeddbshim.min.js www/indexeddbshim.min.js",
+    "release": "npm run upgrade && bump --prompt --tag --push --all && npm publish"
   },
   "repository": {
     "type": "git",
@@ -35,10 +35,10 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "indexeddbshim": "^2.0.3"
+    "indexeddbshim": "^2.0.4"
   },
   "devDependencies": {
     "npm-check-updates": "^1.5.1",
-    "version-bump-prompt": "^1.2.3"
+    "version-bump-prompt": "^1.4.0"
   }
 }
