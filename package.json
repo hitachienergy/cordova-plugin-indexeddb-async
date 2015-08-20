@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-indexeddb-async",
-  "version": "2.1.4",
+  "version": "2.2.1",
   "description": "An asynchronous IndexedDB plug-in for Cordova apps",
   "cordova": {
     "id": "cordova-plugin-indexeddb-async",
@@ -35,7 +35,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "indexeddbshim": "^2.1.4"
+    "indexeddbshim": "^2.2.1"
   },
   "devDependencies": {
     "npm-check-updates": "^2.2.0",
