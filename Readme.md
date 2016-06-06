@@ -10,6 +10,7 @@ Features
 --------------------------
 * Uses [IndexedDBShim](https://github.com/axemclion/IndexedDBShim) to polyfill devices that don't support IndexedDB
 * Uses the [__asynchronous__ WebSql plugin](https://github.com/Thinkwise/cordova-plugin-websql) on Windows devices
+* Uses the [cordova-plugin-sqlite-2](https://github.com/nolanlawson/cordova-plugin-sqlite-2) on iOS devices
 * Can _optionally replace_ native IndexedDB on devices with [buggy implementations](http://www.raymondcamden.com/2014/9/25/IndexedDB-on-iOS-8--Broken-Bad)
 * Can _optionally enhance_ native IndexedDB on devices that are [missing certain features](http://codepen.io/cemerick/pen/Itymi)
 * This plugin is basically an IndexedDB-to-WebSql adapter
@@ -61,12 +62,12 @@ iOS 8's implementation of IndexedDB is [very buggy](http://www.raymondcamden.com
 window.shimIndexedDB.__useShim()
 ````
 
-##### Known Issue on iOS
+##### Known Issues on iOS
 Due to a [bug in WebKit](https://bugs.webkit.org/show_bug.cgi?id=137034), the `window.indexedDB` property is read-only and cannot be overridden by IndexedDBShim.  Until the bug is fixed, the only workaround is to create an `indexedDB` variable in your closure.  That way, all code within that closure will use the variable instead of the `window.indexedDB` property.  For example:
 
 ````javascript
 (function() {
-    // This works on all devices/browsers, and only uses IndexedDBShim as a final fallback 
+    // This works on all devices/browsers, and only uses IndexedDBShim as a final fallback
     var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
 
     // This code will use the native IndexedDB if it exists, or the shim otherwise
@@ -74,6 +75,7 @@ Due to a [bug in WebKit](https://bugs.webkit.org/show_bug.cgi?id=137034), the `w
 })();
 ````
 
+Another [bug in webkit](https://bugs.webkit.org/show_bug.cgi?id=137760) in the WebSQL causes memory leaks while calling openDatabase to many times. This results in a shutdown of the application. For iOS devices we now fallback to the [cordova-plugin-sqlite-2](https://github.com/nolanlawson/cordova-plugin-sqlite-2) plugin.
 
 ### Windows
 Windows 8 and 8.1 support IndexedDB natively, so the plugin won't do anything by default.  
