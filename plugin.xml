@@ -17,6 +17,10 @@
     </platform>
 
     <platform name="ios">
+        <dependency id="cordova-plugin-sqlite-2" url="https://github.com/nolanlawson/cordova-plugin-sqlite-2.git"/>
+        <js-module src="www/requireSQLite2.js" name="RequireSQLite2">
+            <runs />
+        </js-module>
         <js-module src="www/indexeddbshim.min.js" name="IndexedDBShim">
             <runs />
         </js-module>
