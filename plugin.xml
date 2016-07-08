@@ -33,7 +33,7 @@
     </platform>
 
     <platform name="windows">
-    	<dependency id="cordova-plugin-websql-async" url="https://github.com/Thinkwise/cordova-plugin-websql.git"/>
+    	<dependency id="cordova-plugin-websql-async" url="https://github.com/ABB-Austin/cordova-plugin-websql-async.git"/>
         <js-module src="www/requireWebSql.js" name="RequireWebSql">
             <runs />
         </js-module>
