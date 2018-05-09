@@ -12,7 +12,7 @@
     ]
   },
   "scripts": {
-    "upgrade": "ncu --upgradeAll && npm update && cp node_modules/indexeddbshim/dist/indexeddbshim.min.js www/indexeddbshim.min.js",
+    "upgrade": "ncu --upgradeAll && npm update && cp node_modules/indexeddbshim/dist/indexeddbshim.min.js* www/",
     "release": "npm run upgrade && bump --prompt --tag --push --all && npm publish"
   },
   "repository": {
