@@ -1,7 +1,7 @@
 Asynchronous IndexedDB plugin for Cordova
 ================================
 
-[![Dependencies](https://img.shields.io/david/ABB-Austin/cordova-plugin-indexeddb-async.svg)](https://david-dm.org/ABB-Austin/cordova-plugin-indexeddb-async)
+[![Dependencies](https://img.shields.io/david/hitachienergy/cordova-plugin-indexeddb-async.svg)](https://david-dm.org/hitachienergy/cordova-plugin-indexeddb-async)
 [![npm](http://img.shields.io/npm/v/cordova-plugin-indexeddb-async.svg)](https://www.npmjs.com/package/cordova-plugin-indexeddb-async)
 [![License](https://img.shields.io/npm/l/cordova-plugin-indexeddb-async.svg)](LICENSE)
 
@@ -23,7 +23,7 @@ Install via the [Cordova CLI](https://cordova.apache.org/docs/en/edge/guide_cli_
 For __Cordova CLI 4.x__, use the GIT URL syntax:
 
 ````bash
-cordova plugin add https://github.com/ABB-Austin/cordova-plugin-indexeddb-async.git
+cordova plugin add https://github.com/hitachienergy/cordova-plugin-indexeddb-async.git
 ````
 
 For __Cordova CLI 5.x__, use the [new npm syntax](https://github.com/cordova/apache-blog-posts/blob/master/2015-04-15-plugins-release-and-move-to-npm.md):
