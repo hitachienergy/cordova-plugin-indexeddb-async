@@ -7,8 +7,8 @@
     <author>ABB Austin</author>
     <license>Apache-2.0</license>
     <keywords>cordova, indexeddb, db, database</keywords>
-    <repo>https://github.com/ABB-Austin/cordova-plugin-indexeddb-async</repo>
-    <issues>https://github.com/ABB-Austin/cordova-plugin-indexeddb-async/issues</issues>
+    <repo>https://github.com/hitachienergy/cordova-plugin-indexeddb-async</repo>
+    <issues>https://github.com/hitachienergy/cordova-plugin-indexeddb-async/issues</issues>
 
     <platform name="browser">
         <js-module src="www/indexeddbshim.min.js" name="IndexedDBShim">
@@ -33,7 +33,7 @@
     </platform>
 
     <platform name="windows">
-    	<dependency id="cordova-plugin-websql" url="https://github.com/ABB-Austin/cordova-plugin-websql.git"/>
+    	<dependency id="cordova-plugin-websql" url="https://github.com/hitachienergy/cordova-plugin-websql.git"/>
         <js-module src="www/requireWebSql.js" name="RequireWebSql">
             <runs />
         </js-module>
